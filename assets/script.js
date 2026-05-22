@@ -14,7 +14,7 @@ const gameboard = (()=> {
 
     getBoard = ()=> board;
 
-    return {board, getBoard};
+    return {getBoard};
 })()
 
 const players = (()=>{
@@ -50,9 +50,11 @@ const players = (()=>{
 })();
 
 const gameController = (()=>{
-    player1Name = "Aderito";
-    player2Name = "Benson";
+    const player1Name = "Aderito";
+    const player2Name = "Benson";
 
     players.player1.setName(player1Name);
     players.player2.setName(player2Name);
+
 })();
+
