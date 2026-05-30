@@ -53,8 +53,42 @@ const gameController = (()=>{
     const player1Name = "Aderito";
     const player2Name = "Benson";
 
+    let moveCounter = 0;
+
     players.player1.setName(player1Name);
     players.player2.setName(player2Name);
 
+    const makeMove = (row, column, player)=>{
+        gameboard.getBoard()[row][column] = player.getToken();
+        moveCounter++
+    }
+
+    const checkWinner = (activePlayer)=>{
+        if((gameboard.getBoard()[0][0] == activePlayer.getToken()) && (gameboard.getBoard()[0][1] == activePlayer.getToken()) && (gameboard.getBoard()[0][2] == activePlayer.getToken())){
+            console.log("winner");
+        }else if((gameboard.getBoard()[1][0] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[1][2] == activePlayer.getToken())){
+            console.log("winner");
+        }else if((gameboard.getBoard()[2][0] == activePlayer.getToken()) && (gameboard.getBoard()[2][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][2] == activePlayer.getToken())){
+            console.log("winner");
+        }
+        else if((gameboard.getBoard()[0][0] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][2] == activePlayer.getToken())){
+            console.log("winner");
+        }
+        else if((gameboard.getBoard()[0][2] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][0] == activePlayer.getToken())){
+            console.log("winner");
+        }
+        else if((gameboard.getBoard()[0][0] == activePlayer.getToken()) && (gameboard.getBoard()[1][0] == activePlayer.getToken()) && (gameboard.getBoard()[2][0] == activePlayer.getToken())){
+            console.log("winner");
+        }else if((gameboard.getBoard()[0][1] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][1] == activePlayer.getToken())){
+            console.log("winner");
+        }
+        else if((gameboard.getBoard()[0][2] == activePlayer.getToken()) && (gameboard.getBoard()[1][2] == activePlayer.getToken()) && (gameboard.getBoard()[2][2] == activePlayer.getToken())){
+            console.log("winner");
+        }
+    }
+
+    return {makeMove, checkWinner}
+
 })();
+
 
