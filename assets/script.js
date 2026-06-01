@@ -24,57 +24,47 @@ const gameboard = (()=> {
     return {getBoard, restartBoard, printBoard};
 })()
 
-const players = (()=>{
-    const player1 = {
-        name: undefined,
-        token: 1,
-        setName: function(name) {
-            this.name = name;
-        },
-        getName: function() {
-            return this.name;
-        },
-        getToken: function(){
-            return this.token;
-        }
+function makePlayer(nameInput, tokenInput){
+    
+    let name = nameInput
+    let token = tokenInput
+
+    const setName = (playerName)=> {
+        name = playerName;
     }
 
-    const player2 = {
-        name : undefined,
-        token: 2,
-        setName: function(name) {
-            this.name = name;
-        },
-        getName: function() {
-            return this.name;
-        },
-        getToken: function(){
-            return this.token;
-        }
+    const setToken = (playerToken)=> {
+        name = playerToken;
     }
 
-    return {player1, player2};
-})();
+    const getName = ()=> {
+        return name;
+    }
+
+    const getToken = ()=> {
+        return token;
+    }
+
+    return {setName, getName, setToken, getToken}
+}
+
+const player1 = makePlayer("Player 1", 1);
+const player2 = makePlayer("Player 2", 2);
+
 
 const gameController = (()=>{
 
     gameboard.restartBoard();
 
-    const player1Name = "Aderito";
-    const player2Name = "Benson";
-
     let moveCounter = 0;
 
-    players.player1.setName(player1Name);
-    players.player2.setName(player2Name);
-
-    let activePlayer = players.player1;
+    let activePlayer = player1;
 
     const changeActivePlayer = (player)=>{
-        if(player == players.player1) {
-            activePlayer = players.player2;
+        if(player == player1) {
+            activePlayer = player2;
         }else {
-            activePlayer = players.player1;
+            activePlayer = player1;
         }
     }
 
@@ -125,6 +115,7 @@ const gameController = (()=>{
     return {makeMove, checkWinner, getActivePlayer}
 
 })();
+
 
 gameController.makeMove(0,0,gameController.getActivePlayer());
 gameController.makeMove(2,2,gameController.getActivePlayer());
