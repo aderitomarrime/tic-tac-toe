@@ -57,8 +57,8 @@ const gameController = (()=>{
     gameboard.restartBoard();
 
     let moveCounter = 0;
-
     let activePlayer = player1;
+    let winner;
 
     const changeActivePlayer = (player)=>{
         if(player == player1) {
@@ -82,33 +82,49 @@ const gameController = (()=>{
 
     const checkWinner = (activePlayer)=>{
         if((gameboard.getBoard()[0][0] == activePlayer.getToken()) && (gameboard.getBoard()[0][1] == activePlayer.getToken()) && (gameboard.getBoard()[0][2] == activePlayer.getToken())){
-            console.log(`The winner is ${activePlayer.getName()}`);
+            winner = activePlayer;
+            console.log(`the winner is ${winner.getName()}`)
             gameboard.restartBoard()
         }else if((gameboard.getBoard()[1][0] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[1][2] == activePlayer.getToken())){
-            console.log(`The winner is ${activePlayer.getName()}`);
+            winner = activePlayer;
+            console.log(`the winner is ${winner.getName()}`)
             gameboard.restartBoard()
         }else if((gameboard.getBoard()[2][0] == activePlayer.getToken()) && (gameboard.getBoard()[2][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][2] == activePlayer.getToken())){
-            console.log(`The winner is ${activePlayer.getName()}`);
+            winner = activePlayer;
+            console.log(`the winner is ${winner.getName()}`)
             gameboard.restartBoard()
         }
         else if((gameboard.getBoard()[0][0] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][2] == activePlayer.getToken())){
-            console.log(`The winner is ${activePlayer.getName()}`);
+            winner = activePlayer;
+            console.log(`the winner is ${winner.getName()}`)
             gameboard.restartBoard()
         }
         else if((gameboard.getBoard()[0][2] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][0] == activePlayer.getToken())){
-            console.log(`The winner is ${activePlayer.getName()}`);
+            winner = activePlayer;
+            console.log(`the winner is ${winner.getName()}`)
             gameboard.restartBoard()
         }
         else if((gameboard.getBoard()[0][0] == activePlayer.getToken()) && (gameboard.getBoard()[1][0] == activePlayer.getToken()) && (gameboard.getBoard()[2][0] == activePlayer.getToken())){
-            console.log(`The winner is ${activePlayer.getName()}`);
+            winner = activePlayer;
+            console.log(`the winner is ${winner.getName()}`)
             gameboard.restartBoard()
         }else if((gameboard.getBoard()[0][1] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][1] == activePlayer.getToken())){
-            console.log(`The winner is ${activePlayer.getName()}`);
+            winner = activePlayer;
+            console.log(`the winner is ${winner.getName()}`)
             gameboard.restartBoard()
         }
         else if((gameboard.getBoard()[0][2] == activePlayer.getToken()) && (gameboard.getBoard()[1][2] == activePlayer.getToken()) && (gameboard.getBoard()[2][2] == activePlayer.getToken())){
-            console.log(`The winner is ${activePlayer.getName()}`);
+            winner = activePlayer;
+            console.log(`the winner is ${winner.getName()}`)
             gameboard.restartBoard()
+        }
+
+        if(moveCounter == 9) {
+            if(winner == undefined) {
+                result = "tie"
+                console.log("Its a tie")
+                gameboard.restartBoard()
+            }
         }
     }
 
@@ -117,10 +133,15 @@ const gameController = (()=>{
 })();
 
 
+gameController.makeMove(1,1,gameController.getActivePlayer());
 gameController.makeMove(0,0,gameController.getActivePlayer());
-gameController.makeMove(2,2,gameController.getActivePlayer());
+gameController.makeMove(0,2,gameController.getActivePlayer());
+gameController.makeMove(2,0,gameController.getActivePlayer());
 gameController.makeMove(1,0,gameController.getActivePlayer());
 gameController.makeMove(1,2,gameController.getActivePlayer());
-gameController.makeMove(2,0,gameController.getActivePlayer());
+gameController.makeMove(2,1,gameController.getActivePlayer());
+gameController.makeMove(0,1,gameController.getActivePlayer());
+gameController.makeMove(2,2,gameController.getActivePlayer());
+gameboard.printBoard()
 
 
