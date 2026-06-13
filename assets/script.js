@@ -48,11 +48,11 @@ function makePlayer(nameInput, tokenInput){
     return {setName, getName, setToken, getToken}
 }
 
-const player1 = makePlayer("Player 1", 1);
-const player2 = makePlayer("Player 2", 2);
-
+const player1 = makePlayer("Player 1", "X");
+const player2 = makePlayer("Player 2", "O");
 
 const gameController = (()=>{
+
 
     gameboard.restartBoard();
 
@@ -132,16 +132,79 @@ const gameController = (()=>{
 
 })();
 
+const displayController = (()=>{
+    
+    const makeMoveOnTheBoard = function (item){
+        
+        switch(Number(item.target.id)) {
+            case 0:
+                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                gameController.makeMove(0,0,gameController.getActivePlayer());
+            break;
+            case 1:
+                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                gameController.makeMove(0,1,gameController.getActivePlayer());
+            break;
+            case 2:
+                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                gameController.makeMove(0,2,gameController.getActivePlayer());
+            break;
+            case 3:
+                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                gameController.makeMove(1,0,gameController.getActivePlayer());
+            break;
+            case 4:
+                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                gameController.makeMove(1,1,gameController.getActivePlayer());
+            break;
+            case 5:
+                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                gameController.makeMove(1,2,gameController.getActivePlayer());
+            break;
+            case 6:
+                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                gameController.makeMove(2,0,gameController.getActivePlayer());
+            break;
+            case 7:
+                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                gameController.makeMove(2,1,gameController.getActivePlayer());
+            break;
+            case 8:
+                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                gameController.makeMove(2,2,gameController.getActivePlayer());
+            break;
+            default:
+                console.log("This value is invalid");
+            break;
+        }
+    }
 
-gameController.makeMove(1,1,gameController.getActivePlayer());
-gameController.makeMove(0,0,gameController.getActivePlayer());
-gameController.makeMove(0,2,gameController.getActivePlayer());
-gameController.makeMove(2,0,gameController.getActivePlayer());
-gameController.makeMove(1,0,gameController.getActivePlayer());
-gameController.makeMove(1,2,gameController.getActivePlayer());
-gameController.makeMove(2,1,gameController.getActivePlayer());
-gameController.makeMove(0,1,gameController.getActivePlayer());
-gameController.makeMove(2,2,gameController.getActivePlayer());
-gameboard.printBoard()
+    const clearBoardDisplay = function() {
+        gameSquares.forEach((square)=>{
+            square.textContent='';
+        })
+    }
+
+    let gameSquares = document.querySelectorAll('.square');
+    gameSquares = Array.from(gameSquares);
+
+    gameSquares.forEach((square)=>{
+        square.addEventListener('click', makeMoveOnTheBoard)
+    })
+
+    return {makeMoveOnTheBoard, clearBoardDisplay}
+})()
+
+
+// gameController.makeMove(1,1,gameController.getActivePlayer());
+// gameController.makeMove(0,0,gameController.getActivePlayer());
+// gameController.makeMove(0,2,gameController.getActivePlayer());
+// gameController.makeMove(2,0,gameController.getActivePlayer());
+// gameController.makeMove(1,0,gameController.getActivePlayer());
+// gameController.makeMove(1,2,gameController.getActivePlayer());
+// gameController.makeMove(2,1,gameController.getActivePlayer());
+// gameController.makeMove(0,1,gameController.getActivePlayer());
+// gameController.makeMove(2,2,gameController.getActivePlayer());
+// gameboard.printBoard()
 
 
