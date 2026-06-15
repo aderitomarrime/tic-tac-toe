@@ -81,16 +81,30 @@ const gameController = (()=>{
     }
 
     const announceWinner = (winner)=>{
+        
+        moveCounter = 0;
 
         const announceWinnerModal = document.querySelector('#announce-winner');
         const winnerToken = document.querySelector('#announce-winner h1');
         const winnerParagraph = document.querySelector('#announce-winner p');
+
+        const seeBoardButton = document.querySelector('.modalButtons button:first-child')
+        const restartButton = document.querySelector('.modalButtons button:last-child')
 
         winnerToken.textContent = `${winner.getToken()}`;
         winnerParagraph.textContent = `${winner.getName()} is the winner!`
 
         announceWinnerModal.showModal();
         gameboard.restartBoard()
+
+        seeBoardButton.addEventListener('click', ()=> {
+            announceWinnerModal.close();
+        })
+
+        restartButton.addEventListener('click', ()=> {
+            displayController.clearBoardDisplay();
+            announceWinnerModal.close();
+        })
     }
 
     const checkWinner = (activePlayer)=>{
