@@ -80,9 +80,16 @@ const gameController = (()=>{
         checkWinner(player);
     }
 
-    const announceWinner = (activePlayer)=>{
-        winner = activePlayer;
-        console.log(`the winner is ${winner.getName()}`)
+    const announceWinner = (winner)=>{
+
+        const announceWinnerModal = document.querySelector('#announce-winner');
+        const winnerToken = document.querySelector('#announce-winner h1');
+        const winnerParagraph = document.querySelector('#announce-winner p');
+
+        winnerToken.textContent = `${winner.getToken()}`;
+        winnerParagraph.textContent = `${winner.getName()} is the winner!`
+
+        announceWinnerModal.showModal();
         gameboard.restartBoard()
     }
 
