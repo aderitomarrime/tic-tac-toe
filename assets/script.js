@@ -81,9 +81,8 @@ const gameController = (()=>{
     }
 
     const announceWinner = (winner)=>{
-        
-        moveCounter = 0;
 
+        moveCounter = 0;
         const announceWinnerModal = document.querySelector('#announce-winner');
         const winnerToken = document.querySelector('#announce-winner h1');
         const winnerParagraph = document.querySelector('#announce-winner p');
@@ -91,11 +90,15 @@ const gameController = (()=>{
         const seeBoardButton = document.querySelector('.modalButtons button:first-child')
         const restartButton = document.querySelector('.modalButtons button:last-child')
 
-        winnerToken.textContent = `${winner.getToken()}`;
-        winnerParagraph.textContent = `${winner.getName()} is the winner!`
+        if(winner == undefined) {
+            winnerToken.textContent = `It's a tie!`;
+            winnerParagraph.textContent = `Play again to see who wins.`
+        }else{
 
-        announceWinnerModal.showModal();
-        gameboard.restartBoard()
+            winnerToken.textContent = `${winner.getToken()}`;
+            winnerParagraph.textContent = `${winner.getName()} is the winner!`
+
+        }
 
         seeBoardButton.addEventListener('click', ()=> {
             announceWinnerModal.close();
@@ -105,6 +108,10 @@ const gameController = (()=>{
             displayController.clearBoardDisplay();
             announceWinnerModal.close();
         })
+
+        announceWinnerModal.showModal();
+        gameboard.restartBoard()
+
     }
 
     const checkWinner = (activePlayer)=>{
@@ -132,9 +139,7 @@ const gameController = (()=>{
 
         if(moveCounter == 9) {
             if(winner == undefined) {
-                result = "tie"
-                console.log("Its a tie")
-                gameboard.restartBoard()
+                announceWinner();
             }
         }
     }
