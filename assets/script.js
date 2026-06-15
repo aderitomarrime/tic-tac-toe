@@ -80,43 +80,33 @@ const gameController = (()=>{
         checkWinner(player);
     }
 
+    const announceWinner = (activePlayer)=>{
+        winner = activePlayer;
+        console.log(`the winner is ${winner.getName()}`)
+        gameboard.restartBoard()
+    }
+
     const checkWinner = (activePlayer)=>{
         if((gameboard.getBoard()[0][0] == activePlayer.getToken()) && (gameboard.getBoard()[0][1] == activePlayer.getToken()) && (gameboard.getBoard()[0][2] == activePlayer.getToken())){
-            winner = activePlayer;
-            console.log(`the winner is ${winner.getName()}`)
-            gameboard.restartBoard()
+            announceWinner(activePlayer);
         }else if((gameboard.getBoard()[1][0] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[1][2] == activePlayer.getToken())){
-            winner = activePlayer;
-            console.log(`the winner is ${winner.getName()}`)
-            gameboard.restartBoard()
+            announceWinner(activePlayer);
         }else if((gameboard.getBoard()[2][0] == activePlayer.getToken()) && (gameboard.getBoard()[2][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][2] == activePlayer.getToken())){
-            winner = activePlayer;
-            console.log(`the winner is ${winner.getName()}`)
-            gameboard.restartBoard()
+            announceWinner(activePlayer);
         }
         else if((gameboard.getBoard()[0][0] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][2] == activePlayer.getToken())){
-            winner = activePlayer;
-            console.log(`the winner is ${winner.getName()}`)
-            gameboard.restartBoard()
+            announceWinner(activePlayer);
         }
         else if((gameboard.getBoard()[0][2] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][0] == activePlayer.getToken())){
-            winner = activePlayer;
-            console.log(`the winner is ${winner.getName()}`)
-            gameboard.restartBoard()
+            announceWinner(activePlayer);
         }
         else if((gameboard.getBoard()[0][0] == activePlayer.getToken()) && (gameboard.getBoard()[1][0] == activePlayer.getToken()) && (gameboard.getBoard()[2][0] == activePlayer.getToken())){
-            winner = activePlayer;
-            console.log(`the winner is ${winner.getName()}`)
-            gameboard.restartBoard()
+            announceWinner(activePlayer);
         }else if((gameboard.getBoard()[0][1] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][1] == activePlayer.getToken())){
-            winner = activePlayer;
-            console.log(`the winner is ${winner.getName()}`)
-            gameboard.restartBoard()
+            announceWinner(activePlayer);
         }
         else if((gameboard.getBoard()[0][2] == activePlayer.getToken()) && (gameboard.getBoard()[1][2] == activePlayer.getToken()) && (gameboard.getBoard()[2][2] == activePlayer.getToken())){
-            winner = activePlayer;
-            console.log(`the winner is ${winner.getName()}`)
-            gameboard.restartBoard()
+            announceWinner(activePlayer);
         }
 
         if(moveCounter == 9) {
