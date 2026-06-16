@@ -212,15 +212,3 @@ const displayController = (()=>{
 })()
 
 
-// gameController.makeMove(1,1,gameController.getActivePlayer());
-// gameController.makeMove(0,0,gameController.getActivePlayer());
-// gameController.makeMove(0,2,gameController.getActivePlayer());
-// gameController.makeMove(2,0,gameController.getActivePlayer());
-// gameController.makeMove(1,0,gameController.getActivePlayer());
-// gameController.makeMove(1,2,gameController.getActivePlayer());
-// gameController.makeMove(2,1,gameController.getActivePlayer());
-// gameController.makeMove(0,1,gameController.getActivePlayer());
-// gameController.makeMove(2,2,gameController.getActivePlayer());
-// gameboard.printBoard()
-
-
