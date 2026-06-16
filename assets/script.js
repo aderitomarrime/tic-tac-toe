@@ -4,6 +4,7 @@ const gameboard = (()=> {
     const columns = 3;
 
     let board = [];
+    let isBoardReady = true;
 
 
     const restartBoard = ()=> {
@@ -19,9 +20,17 @@ const gameboard = (()=> {
         console.table(board);
     }
 
+    const getBoardStatus = ()=> {
+        return isBoardReady;
+    }
+
+    const changeBoartStatus = (status)=> {
+        isBoardReady = status;
+    }
+
     const getBoard = ()=> board;
 
-    return {getBoard, restartBoard, printBoard};
+    return {getBoard, restartBoard, printBoard, getBoardStatus, changeBoartStatus};
 })()
 
 function makePlayer(nameInput, tokenInput){
@@ -83,6 +92,8 @@ const gameController = (()=>{
     const announceWinner = (winner)=>{
 
         moveCounter = 0;
+        gameboard.changeBoartStatus(false);
+
         const announceWinnerModal = document.querySelector('#announce-winner');
         const winnerToken = document.querySelector('#announce-winner h1');
         const winnerParagraph = document.querySelector('#announce-winner p');
@@ -151,6 +162,11 @@ const gameController = (()=>{
 const displayController = (()=>{
     
     const makeMoveOnTheBoard = function (item){
+
+        if(gameboard.getBoardStatus() != true) {
+            displayController.clearBoardDisplay()
+            gameboard.changeBoartStatus(true);
+        } 
         
         switch(Number(item.target.id)) {
             case 0:
