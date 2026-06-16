@@ -69,6 +69,10 @@ const gameController = (()=>{
     let activePlayer = player1;
     let winner;
 
+    const resetMoveCounter = ()=>{
+        moveCounter = 0;
+    }
+
     const changeActivePlayer = (player)=>{
         if(player == player1) {
             activePlayer = player2;
@@ -155,7 +159,7 @@ const gameController = (()=>{
         }
     }
 
-    return {makeMove, checkWinner, getActivePlayer}
+    return {makeMove, checkWinner, getActivePlayer, resetMoveCounter}
 
 })();
 
@@ -217,8 +221,15 @@ const displayController = (()=>{
         })
     }
 
+    let buttonRestart = document.querySelector('.buttons .restart');
     let gameSquares = document.querySelectorAll('.square');
     gameSquares = Array.from(gameSquares);
+
+    buttonRestart.addEventListener('click', ()=> {
+        clearBoardDisplay();
+        gameboard.restartBoard();
+        gameController.resetMoveCounter();
+    })
 
     gameSquares.forEach((square)=>{
         square.addEventListener('click', makeMoveOnTheBoard)
