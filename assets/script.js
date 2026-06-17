@@ -164,6 +164,20 @@ const gameController = (()=>{
 })();
 
 const displayController = (()=>{
+
+    const player1Name = document.querySelector('.players .player1 h1');
+    const player1Token = document.querySelector('.players .player1 h2');
+    const player2Name = document.querySelector('.players .player2 h1');
+    const player2Token = document.querySelector('.players .player2 h2');
+
+    let buttonRestart = document.querySelector('.buttons .restart');
+    let gameSquares = document.querySelectorAll('.square');
+    gameSquares = Array.from(gameSquares);
+
+    player1Name.textContent =`${player1.getName()}`;
+    player1Token.textContent = `${player1.getToken()}`;
+    player2Name.textContent =`${player2.getName()}`;
+    player2Token.textContent = `${player2.getToken()}`;
     
     const makeMoveOnTheBoard = function (item){
 
@@ -220,10 +234,6 @@ const displayController = (()=>{
             square.textContent='';
         })
     }
-
-    let buttonRestart = document.querySelector('.buttons .restart');
-    let gameSquares = document.querySelectorAll('.square');
-    gameSquares = Array.from(gameSquares);
 
     buttonRestart.addEventListener('click', ()=> {
         clearBoardDisplay();
