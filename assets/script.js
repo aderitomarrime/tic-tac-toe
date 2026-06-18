@@ -180,6 +180,8 @@ const displayController = (()=>{
     let myForm =document.querySelector('form');
     let cancelButton = document.querySelector(".form-buttons input[formmethod='dialog']");
     let submitButton = document.querySelector(".form-buttons input[value='Change']");
+    let player1Container = document.querySelector('.player1');
+    let player2Container = document.querySelector('.player2');
     let gameSquares = document.querySelectorAll('.square');
     gameSquares = Array.from(gameSquares);
 
@@ -236,6 +238,8 @@ const displayController = (()=>{
                 console.log("This value is invalid");
             break;
         }
+
+        markActivePLayer()
     }
 
     const clearBoardDisplay = function() {
@@ -248,6 +252,17 @@ const displayController = (()=>{
         player1Name.textContent =`${firstPlayerName}`;
         player2Name.textContent =`${secondPlayerName}`;
     }
+
+    const markActivePLayer = ()=>{
+        if(gameController.getActivePlayer().getToken() == 'X') {
+            player1Container.setAttribute('style', 'border-bottom: 1px solid;')
+            player2Container.setAttribute('style', 'border-bottom: none;')
+        }else {
+            player2Container.setAttribute('style', 'border-bottom: 1px solid;')
+            player1Container.setAttribute('style', 'border-bottom: none;')
+        }
+    }
+    markActivePLayer()
 
     buttonRestart.addEventListener('click', ()=> {
         if(gameboard.getBoardStatus()) {
