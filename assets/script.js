@@ -73,6 +73,10 @@ const gameController = (()=>{
         moveCounter = 0;
     }
 
+    const getMoveCounter = ()=> {
+        return moveCounter;
+    }
+
     const setDeafultActivePLayer = ()=>{
         activePlayer = player1;
     }
@@ -163,7 +167,7 @@ const gameController = (()=>{
         }
     }
 
-    return {makeMove, checkWinner, getActivePlayer, resetMoveCounter, setDeafultActivePLayer}
+    return {makeMove, checkWinner, getActivePlayer, resetMoveCounter, setDeafultActivePLayer, getMoveCounter}
 
 })();
 
@@ -242,6 +246,12 @@ const displayController = (()=>{
         }
 
         markActivePLayer()
+
+        if(gameController.getMoveCounter()>0) {
+            changeNamesButton.setAttribute('style', 'display: none;')
+        } else{
+            changeNamesButton.setAttribute('style', 'display: inline-block;')
+        }
     }
 
     const clearBoardDisplay = function() {
@@ -270,9 +280,11 @@ const displayController = (()=>{
         if(gameboard.getBoardStatus()) {
             gameController.setDeafultActivePLayer()
         }
+        
         clearBoardDisplay();
         gameboard.restartBoard();
         gameController.resetMoveCounter();
+        changeNamesButton.setAttribute('style', 'display: inline-block;')
     })
 
     changeNamesButton.addEventListener('click', ()=> {
