@@ -73,6 +73,10 @@ const gameController = (()=>{
         moveCounter = 0;
     }
 
+    const setDeafultActivePLayer = ()=>{
+        activePlayer = player1;
+    }
+
     const changeActivePlayer = (player)=>{
         if(player == player1) {
             activePlayer = player2;
@@ -159,7 +163,7 @@ const gameController = (()=>{
         }
     }
 
-    return {makeMove, checkWinner, getActivePlayer, resetMoveCounter}
+    return {makeMove, checkWinner, getActivePlayer, resetMoveCounter, setDeafultActivePLayer}
 
 })();
 
@@ -246,6 +250,9 @@ const displayController = (()=>{
     }
 
     buttonRestart.addEventListener('click', ()=> {
+        if(gameboard.getBoardStatus()) {
+            gameController.setDeafultActivePLayer()
+        }
         clearBoardDisplay();
         gameboard.restartBoard();
         gameController.resetMoveCounter();
