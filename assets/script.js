@@ -197,46 +197,48 @@ const displayController = (()=>{
             gameboard.changeBoartStatus(true);
         } 
         
-        switch(Number(item.target.id)) {
-            case 0:
-                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
-                gameController.makeMove(0,0,gameController.getActivePlayer());
-            break;
-            case 1:
-                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
-                gameController.makeMove(0,1,gameController.getActivePlayer());
-            break;
-            case 2:
-                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
-                gameController.makeMove(0,2,gameController.getActivePlayer());
-            break;
-            case 3:
-                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
-                gameController.makeMove(1,0,gameController.getActivePlayer());
-            break;
-            case 4:
-                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
-                gameController.makeMove(1,1,gameController.getActivePlayer());
-            break;
-            case 5:
-                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
-                gameController.makeMove(1,2,gameController.getActivePlayer());
-            break;
-            case 6:
-                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
-                gameController.makeMove(2,0,gameController.getActivePlayer());
-            break;
-            case 7:
-                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
-                gameController.makeMove(2,1,gameController.getActivePlayer());
-            break;
-            case 8:
-                item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
-                gameController.makeMove(2,2,gameController.getActivePlayer());
-            break;
-            default:
-                console.log("This value is invalid");
-            break;
+        if(item.target.textContent == '') {
+            switch(Number(item.target.id)) {
+                case 0:
+                    item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                    gameController.makeMove(0,0,gameController.getActivePlayer());
+                break;
+                case 1:
+                    item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                    gameController.makeMove(0,1,gameController.getActivePlayer());
+                break;
+                case 2:
+                    item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                    gameController.makeMove(0,2,gameController.getActivePlayer());
+                break;
+                case 3:
+                    item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                    gameController.makeMove(1,0,gameController.getActivePlayer());
+                break;
+                case 4:
+                    item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                    gameController.makeMove(1,1,gameController.getActivePlayer());
+                break;
+                case 5:
+                    item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                    gameController.makeMove(1,2,gameController.getActivePlayer());
+                break;
+                case 6:
+                    item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                    gameController.makeMove(2,0,gameController.getActivePlayer());
+                break;
+                case 7:
+                    item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                    gameController.makeMove(2,1,gameController.getActivePlayer());
+                break;
+                case 8:
+                    item.target.textContent = `${gameController.getActivePlayer().getToken()}`;
+                    gameController.makeMove(2,2,gameController.getActivePlayer());
+                break;
+                default:
+                    console.log("This value is invalid");
+                break;
+            }
         }
 
         markActivePLayer()
