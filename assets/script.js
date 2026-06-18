@@ -285,6 +285,7 @@ const displayController = (()=>{
         gameboard.restartBoard();
         gameController.resetMoveCounter();
         changeNamesButton.setAttribute('style', 'display: inline-block;')
+        markActivePLayer()
     })
 
     changeNamesButton.addEventListener('click', ()=> {
