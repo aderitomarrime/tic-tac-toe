@@ -171,6 +171,11 @@ const displayController = (()=>{
     const player2Token = document.querySelector('.players .player2 h2');
 
     let buttonRestart = document.querySelector('.buttons .restart');
+    let changeNamesButton = document.querySelector('.buttons .names');
+    let changeNamesModal = document.querySelector('#change-names');
+    let myForm =document.querySelector('form');
+    let cancelButton = document.querySelector(".form-buttons input[formmethod='dialog']");
+    let submitButton = document.querySelector(".form-buttons input[value='Change']");
     let gameSquares = document.querySelectorAll('.square');
     gameSquares = Array.from(gameSquares);
 
@@ -235,10 +240,37 @@ const displayController = (()=>{
         })
     }
 
+    const changeNames = (firstPlayerName, secondPlayerName)=> {
+        player1Name.textContent =`${firstPlayerName}`;
+        player2Name.textContent =`${secondPlayerName}`;
+    }
+
     buttonRestart.addEventListener('click', ()=> {
         clearBoardDisplay();
         gameboard.restartBoard();
         gameController.resetMoveCounter();
+    })
+
+    changeNamesButton.addEventListener('click', ()=> {
+        changeNamesModal.showModal();
+    })
+
+    cancelButton.addEventListener('click', (event)=> {
+        changeNamesModal.close();
+        myForm.reset();
+        event.preventDefault()
+    })
+
+    myForm.addEventListener('submit', (event)=>{
+
+        const firstPlayerName = document.querySelector("input[name='playerone']");
+        const secondPlayerName = document.querySelector("input[name='playertwo']");
+
+        changeNames(firstPlayerName.value, secondPlayerName.value);
+
+        event.preventDefault();
+        changeNamesModal.close();
+        myForm.reset();
     })
 
     gameSquares.forEach((square)=>{

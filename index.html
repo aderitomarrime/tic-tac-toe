@@ -45,6 +45,23 @@
                 <button>Restart game</button>
             </div>
         </dialog>
+
+        <dialog closedby="any" id="change-names">
+            <form action="">
+                <div>
+                    <label for="playerone">Player 1</label>
+                    <input type="text" name="playerone" id="playerone" placeholder="Enter name" minlength="3" required>
+                </div>
+                <div>
+                    <label for="playertwo">Player 2</label>
+                    <input type="text" name="playertwo" id="playertwo" placeholder="Enter name" minlength="3" required>
+                </div>
+                <div class="form-buttons">
+                    <input type="button" value="Cancel" formmethod="dialog">
+                    <input type="submit" value="Change">
+                </div>
+            </form>
+        </dialog>
     </div>
 </body>
 </html>
