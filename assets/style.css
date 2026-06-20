@@ -5,6 +5,8 @@
 
     --txt-black: #0f172a;
     --txt-white: #f8fafc;
+    --green: rgba(0, 128, 0, 0.7);
+    --red: rgba(255, 0, 0, 0.7);
     --border: color-mix(in srgb, white 50%, transparent);
 
     /* font-size (typescale 1.25) */
@@ -219,12 +221,13 @@ body {
 .buttons {
   display: flex;
   justify-content: center;
-  gap: var(--spacing);
+  gap: calc(var(--spacing)*4);
 }
 
-.buttons button {
+.buttons button,
+.modalButtons button{
   border: none;
-  border-radius: var(--radius-btn);
+  border-radius: var(--radius);
   background-color: var(--secondary);
   color: var(--txt-black);
   font-size: var(--fs-md);
@@ -240,7 +243,8 @@ body {
   opacity: 0.8;
 }
 
-.buttons button:first-child {
+.buttons button:first-child,
+.modalButtons button:first-child {
   background-color: transparent;
   border: 1.5px solid var(--secondary);
   color: var(--secondary);
@@ -249,3 +253,107 @@ body {
 .buttons button:first-child:hover{
   background-color: color-mix(in srgb, var(--secondary) 15%, transparent);
 }
+
+#announce-winner,
+#change-names {
+  max-width: 350px;
+  width: 100%;
+  text-align: center;
+  padding: calc(var(--spacing)*4);
+  padding-bottom: calc(var(--spacing)*5);
+  border: none;
+  border-radius: var(--radius);
+  color: var(--primary);
+  background-color: var(--secondary);
+}
+
+#announce-winner h1 {
+  font-size: var(--fs-4xl);
+  line-height: var(--fs-4xl);
+}
+
+#announce-winner p {
+  font-size: var(--fs-lg);
+  margin-bottom: calc(var(--spacing)*4);
+}
+
+.modalButtons button {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+.modalButtons button:hover {
+  opacity: 0.8;
+}
+
+.modalButtons button:first-child {
+  background-color: transparent;
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
+}
+
+.modalButtons button:first-child:hover {
+    background-color: color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+#announce-winner::backdrop, 
+#change-names::backdrop {
+  background-color: var(--primary);
+  opacity: 0.9;
+}
+
+#change-names form,
+#change-names form > div {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+#change-names form {
+  gap: calc(var(--spacing)*4);
+}
+
+#change-names form > div {
+  gap: calc(var(--spacing)*2);
+}
+
+#change-names form > div label {
+  font-size: var(--fs-md);
+  line-height: var(--fs-md);
+}
+
+#change-names form > div input {
+  border: none;
+  padding: calc(var(--spacing)*1) calc(var(--spacing)*2);
+  border-radius: var(--radius);
+}
+
+#change-names form > div input:focus {
+  outline: none;
+  box-shadow: 0 0 6px var(--primary);
+}
+
+#change-names form .form-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: calc(var(--spacing)*4);
+}
+
+#change-names form .form-buttons input {
+  flex: 1;
+  cursor: pointer;
+  background-color: var(--green);
+  color: var(--txt-white);
+  font-weight: 500;
+  transition: .3s ease-in-out;
+}
+
+#change-names form .form-buttons input:hover {
+  opacity: 0.8;
+}
+
+#change-names form .form-buttons input:first-child {
+  background-color: var(--red);
+}
+
+
