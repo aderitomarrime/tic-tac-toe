@@ -5,6 +5,7 @@
 
     --txt-black: #0f172a;
     --txt-white: #f8fafc;
+    --border: color-mix(in srgb, white 50%, transparent);
 
     /* font-size (typescale 1.25) */
   --fs-xs:  0.625rem;
@@ -41,6 +42,9 @@
 
   /*spacing base*/
   --spacing: 0.25rem;
+
+  --radius: 10px;
+  --radius-btn: 4px;
 
 }
 
@@ -118,8 +122,44 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100dvh;
-    background-color: var(--fundo);
+    background-color: var(--primary);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: calc(var(--spacing)*120);
+  width: 100%;
+  padding: calc(var(--spacing)*2);
+  /* border: 1px solid var(--border); */
+  border-radius: var(--radius);
+  row-gap: calc(var(--spacing)*6);
+}
+
+.players,
+.players > div {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: calc(var(--spacing)*2);
+  padding-block: calc(var(--spacing)*1);
+  border-radius: var(--radius);
+}
+
+.players{
+  gap: calc(var(--spacing)*4);
+}
+
+.players > div {
+  border: 1px solid var(--secondary);
+  flex: 1;
+}
+
+.players h1, 
+.players h2 {
+  color: var(--secondary);
+  font-size: var(--fs-lg);
 }
 
 .gameboard {
@@ -130,5 +170,82 @@ body {
 }
 
 .gameboard .square {
-    border: 1px solid var(--borda);
+  color: var(--txt-white);
+  font-size: var(--fs-4xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.gameboard .square:nth-child(1) {
+  border-right: 1.5px solid var(--border);
+}
+
+.gameboard .square:nth-child(2) {
+  border-right: 1.5px solid var(--border);
+}
+
+
+.gameboard .square:nth-child(4) {
+  border-right: 1.5px solid var(--border);
+  border-top: 1.5px solid var(--border);
+}
+
+.gameboard .square:nth-child(5) {
+  border-right: 1.5px solid var(--border);
+  border-top: 1.5px solid var(--border);
+}
+
+.gameboard .square:nth-child(6) {
+  border-top: 1.5px solid var(--border);
+}
+
+.gameboard .square:nth-child(7) {
+  border-right: 1.5px solid var(--border);
+  border-top: 1.5px solid var(--border);
+}
+
+.gameboard .square:nth-child(8) {
+  border-right: 1.5px solid var(--border);
+  border-top: 1.5px solid var(--border);
+}
+
+.gameboard .square:nth-child(9) {
+  border-top: 1.5px solid var(--border);
+}
+
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing);
+}
+
+.buttons button {
+  border: none;
+  border-radius: var(--radius-btn);
+  background-color: var(--secondary);
+  color: var(--txt-black);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  padding: calc(var(--spacing)*1) calc(var(--spacing)*2);
+  width: 140px;
+  text-align: center;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.buttons button:hover{
+  opacity: 0.8;
+}
+
+.buttons button:first-child {
+  background-color: transparent;
+  border: 1.5px solid var(--secondary);
+  color: var(--secondary);
+}
+
+.buttons button:first-child:hover{
+  background-color: color-mix(in srgb, var(--secondary) 15%, transparent);
 }
