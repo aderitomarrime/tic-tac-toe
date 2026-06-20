@@ -101,63 +101,27 @@ const gameController = (()=>{
         checkWinner(player);
     }
 
-    const announceWinner = (winner)=>{
-
-        moveCounter = 0;
-        gameboard.changeBoartStatus(false);
-
-        const announceWinnerModal = document.querySelector('#announce-winner');
-        const winnerToken = document.querySelector('#announce-winner h1');
-        const winnerParagraph = document.querySelector('#announce-winner p');
-
-        const seeBoardButton = document.querySelector('.modalButtons button:first-child')
-        const restartButton = document.querySelector('.modalButtons button:last-child')
-
-        if(winner == undefined) {
-            winnerToken.textContent = `It's a tie!`;
-            winnerParagraph.textContent = `Play again to see who wins.`
-        }else{
-
-            winnerToken.textContent = `${winner.getToken()}`;
-            winnerParagraph.textContent = `${winner.getName()} is the winner!`
-
-        }
-
-        seeBoardButton.addEventListener('click', ()=> {
-            announceWinnerModal.close();
-        })
-
-        restartButton.addEventListener('click', ()=> {
-            displayController.clearBoardDisplay();
-            announceWinnerModal.close();
-        })
-
-        announceWinnerModal.showModal();
-        gameboard.restartBoard()
-
-    }
-
     const checkWinner = (activePlayer)=>{
         if((gameboard.getBoard()[0][0] == activePlayer.getToken()) && (gameboard.getBoard()[0][1] == activePlayer.getToken()) && (gameboard.getBoard()[0][2] == activePlayer.getToken())){
-            announceWinner(activePlayer);
+            displayController.announceWinner(activePlayer);
         }else if((gameboard.getBoard()[1][0] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[1][2] == activePlayer.getToken())){
-            announceWinner(activePlayer);
+            displayController.announceWinner(activePlayer);
         }else if((gameboard.getBoard()[2][0] == activePlayer.getToken()) && (gameboard.getBoard()[2][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][2] == activePlayer.getToken())){
-            announceWinner(activePlayer);
+            displayController.announceWinner(activePlayer);
         }
         else if((gameboard.getBoard()[0][0] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][2] == activePlayer.getToken())){
-            announceWinner(activePlayer);
+            displayController.announceWinner(activePlayer);
         }
         else if((gameboard.getBoard()[0][2] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][0] == activePlayer.getToken())){
-            announceWinner(activePlayer);
+            displayController.announceWinner(activePlayer);
         }
         else if((gameboard.getBoard()[0][0] == activePlayer.getToken()) && (gameboard.getBoard()[1][0] == activePlayer.getToken()) && (gameboard.getBoard()[2][0] == activePlayer.getToken())){
-            announceWinner(activePlayer);
+            displayController.announceWinner(activePlayer);
         }else if((gameboard.getBoard()[0][1] == activePlayer.getToken()) && (gameboard.getBoard()[1][1] == activePlayer.getToken()) && (gameboard.getBoard()[2][1] == activePlayer.getToken())){
-            announceWinner(activePlayer);
+            displayController.announceWinner(activePlayer);
         }
         else if((gameboard.getBoard()[0][2] == activePlayer.getToken()) && (gameboard.getBoard()[1][2] == activePlayer.getToken()) && (gameboard.getBoard()[2][2] == activePlayer.getToken())){
-            announceWinner(activePlayer);
+            displayController.announceWinner(activePlayer);
         }
 
         if(moveCounter == 9) {
@@ -263,6 +227,44 @@ const displayController = (()=>{
     const changeNames = (firstPlayerName, secondPlayerName)=> {
         player1Name.textContent =`${firstPlayerName}`;
         player2Name.textContent =`${secondPlayerName}`;
+        player1.setName(firstPlayerName);
+        player2.setName(secondPlayerName);
+    }
+
+    const announceWinner = (winner)=>{
+
+        gameController.resetMoveCounter();
+        gameboard.changeBoartStatus(false);
+
+        const announceWinnerModal = document.querySelector('#announce-winner');
+        const winnerToken = document.querySelector('#announce-winner h1');
+        const winnerParagraph = document.querySelector('#announce-winner p');
+
+        const seeBoardButton = document.querySelector('.modalButtons button:first-child')
+        const restartButton = document.querySelector('.modalButtons button:last-child')
+
+        if(winner == undefined) {
+            winnerToken.textContent = `It's a tie!`;
+            winnerParagraph.textContent = `Play again to see who wins.`
+        }else{
+
+            winnerToken.textContent = `${winner.getToken()}`;
+            winnerParagraph.textContent = `${winner.getName()} is the winner!`
+
+        }
+
+        seeBoardButton.addEventListener('click', ()=> {
+            announceWinnerModal.close();
+        })
+
+        restartButton.addEventListener('click', ()=> {
+            clearBoardDisplay();
+            announceWinnerModal.close();
+        })
+
+        announceWinnerModal.showModal();
+        gameboard.restartBoard()
+
     }
 
     const markActivePLayer = ()=>{
@@ -314,7 +316,7 @@ const displayController = (()=>{
         square.addEventListener('click', makeMoveOnTheBoard)
     })
 
-    return {makeMoveOnTheBoard, clearBoardDisplay}
+    return {makeMoveOnTheBoard, clearBoardDisplay, announceWinner}
 })()
 
 

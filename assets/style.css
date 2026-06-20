@@ -322,6 +322,11 @@ body {
   line-height: var(--fs-md);
 }
 
+#change-names form > div input::placeholder {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+}
+
 #change-names form > div input {
   border: none;
   padding: calc(var(--spacing)*1) calc(var(--spacing)*2);
