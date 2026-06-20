@@ -267,11 +267,11 @@ const displayController = (()=>{
 
     const markActivePLayer = ()=>{
         if(gameController.getActivePlayer().getToken() == 'X') {
-            player1Container.setAttribute('style', 'border-bottom: 1px solid;')
-            player2Container.setAttribute('style', 'border-bottom: none;')
+            player1Container.setAttribute('style', 'background-color: color-mix(in srgb, var(--secondary) 25%, transparent);')
+            player2Container.setAttribute('style', 'background-color: none;')
         }else {
-            player2Container.setAttribute('style', 'border-bottom: 1px solid;')
-            player1Container.setAttribute('style', 'border-bottom: none;')
+            player2Container.setAttribute('style', 'background-color: color-mix(in srgb, var(--secondary) 25%, transparent);')
+            player1Container.setAttribute('style', 'background-color: none;')
         }
     }
     markActivePLayer()
