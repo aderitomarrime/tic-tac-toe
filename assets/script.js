@@ -126,7 +126,7 @@ const gameController = (()=>{
 
         if(moveCounter == 9) {
             if(winner == undefined) {
-                announceWinner();
+                displayController.announceWinner();
             }
         }
     }
